@@ -2,7 +2,7 @@
 
 ## Description
 
-Cli tool for tracking daily tasks
+Cli tool for tracking daily activity
 
 ## Features
 

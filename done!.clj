@@ -1,4 +1,4 @@
-#! /usr/bin/env bbwrap
+#! /usr/bin/env bb
 
 (require '[clojure.tools.cli :as cli]
          '[clojure.core.match :refer [match]]
@@ -89,7 +89,7 @@
                    "\tdone! abadon - abadon started task"))
 
 (defn prepare-args []
-  (let [[cmd options] (rest *command-line-args*)]
+  (let [[cmd options] *command-line-args*]
     (vec (filter some? [cmd options]))))
 
 (let [args (prepare-args)]

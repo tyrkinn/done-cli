@@ -20,12 +20,12 @@
 
 (def default-config (Config. nil [] current-date))
 
+(defn write-config [config]
+  (spit config-file-url (into {} config)))
+
 (when (not (fs/exists? config-file-url))
   (do (fs/create-file config-file-url)
       (write-config default-config)))
-
-(defn write-config [config]
-  (spit config-file-url (into {} config)))
 
 (defn read-config []
   (map->Config (read-string (slurp config-file-url))))

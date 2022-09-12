@@ -11,8 +11,9 @@ git clone https://gitlab.com/tyrkinn/done-cli/
 cd done-cli
 
 bbpath=$(which bb)
+echo "$bbpath"
 
-if [ "$bbpath" = "bb not found" ];
+if [ "$bbpath" != "bb not found" ];
 then
   echo "Installing babashka\n"
   curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install

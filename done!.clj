@@ -51,10 +51,6 @@
   [config-file-url]
   (map->Config (read-string (slurp config-file-url))))
 
-(def file-conf
-  "Config read from configuration file"
-  (read-config config-file-url))
-
 ;; LOG OPERATIONS
 
 (defn verify-log-file
@@ -141,6 +137,8 @@
 ;; MAIN FLOW
 
 (validate-config default-config config-file-url)
+
+(def file-conf (read-config config-file-url))
 
 (check-new-day file-conf current-date log-file-url config-file-url)
 

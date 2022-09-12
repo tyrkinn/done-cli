@@ -1,5 +1,15 @@
 #! /bin/sh
 
+if [ $(which git) = "git not found" ];
+then
+  echo "Install git first"
+  exit 0
+fi
+
+git clone https://gitlab.com/tyrkinn/done-cli/
+
+cd done-cli
+
 bbpath=$(which bb)
 
 if [ $bbpath = "bb not found" ];
@@ -13,5 +23,8 @@ fi
 
 cp ./done\!.clj /usr/local/bin/done\!
 
-echo "Done!-cli successfully moved to bin.\nType \`done!\` to see usage string"
+cd ..
 
+rm -rf done-cli
+
+echo "Done!-cli successfully moved to bin.\nType \`done!\` to see usage string"

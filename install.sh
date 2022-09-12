@@ -1,6 +1,6 @@
 #! /bin/sh
 
-if [ $(which git) == "git not found" ];
+if [ $((which git)) = "git not found" ];
 then
   echo "Install git first"
   exit 0
@@ -12,7 +12,7 @@ cd done-cli
 
 bbpath=$(which bb)
 
-if [ $bbpath == "bb not found" ];
+if [ $bbpath = "bb not found" ];
 then
   echo "Installing babashka\n"
   curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install

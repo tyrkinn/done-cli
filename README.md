@@ -16,5 +16,8 @@ Cli tool for tracking daily activity
 Just run installation command in your shell
 
 ```shell
-  $ curl https://gitlab.com/tyrkinn/done-cli/-/raw/main/install.sh | sh
+  $ curl -sLO https://gitlab.com/tyrkinn/done-cli/-/raw/main/install.sh
+  $ chmod +x install.sh
+  $ sudo ./install.sh
+  $ rm ./install.sh     # To delete install.sh file
 ```

@@ -1,6 +1,6 @@
 #! /bin/sh
 
-if [ "$(which git)" = "git not found" ];
+if [ "$(which git)" = "" ];
 then
   echo "Install git first"
   exit 0
@@ -11,9 +11,8 @@ git clone https://gitlab.com/tyrkinn/done-cli/
 cd done-cli
 
 bbpath=$(which bb)
-echo "$bbpath"
 
-if [ "$bbpath" != "bb not found" ];
+if [[ "$bbpath" = "" ]] || [[ "$bbpath" = "bb not found" ]];
 then
   echo "Installing babashka\n"
   curl -sLO https://raw.githubusercontent.com/babashka/babashka/master/install

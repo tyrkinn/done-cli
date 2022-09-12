@@ -10,7 +10,7 @@ fi
 
 echo "Cloning repo..."
 
-git clone https://gitlab.com/tyrkinn/done-cli/
+git clone https://gitlab.com/tyrkinn/done-cli.git/
 
 cd done-cli
 

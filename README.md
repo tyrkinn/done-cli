@@ -13,9 +13,17 @@ Cli tool for tracking daily activity
 
 ## Installation
 
-1. Install babashka from https://babashka.org/
-2. Copy done! cli to one of your PATH included dirs
+Just run install.sh script with your shell
+
+### Bash
+
 ```shell
-$ cp done\!.clj /your/bin/directory
+  $ bash ./install.sh
 ```
-3. Run `done!` in your shell to get usage help
+
+### Zsh
+
+```shell
+  $ zsh ./install.sh
+```
+

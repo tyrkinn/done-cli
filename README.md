@@ -24,5 +24,5 @@ Just run installation command in your shell
 You can get last version of done! cli using update-done command installed with done-cli
 
 ```shell
-  $ update-done
+  $ sudo update-done
 ```

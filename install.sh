@@ -1,7 +1,5 @@
 #! /bin/sh
 
-currentscript=$0
-
 if [ "$(which git)" = "" ];
 then
   echo "Install git first"
@@ -32,7 +30,7 @@ rm -rf done-cli
 echo "Done!-cli successfully moved to bin.\nType \`done!\` to see usage string"
 
 function finish {
-  shred -u ${currentscript};
+  shred -u install.sh;
 }
 
 trap finish EXIT

@@ -45,7 +45,7 @@ echo "Removing repo"
 
 rm -rf done-cli
 
-echo "\nDone!-cli successfully moved to /usr/local/bin.\n\nType \`done!\` to see usage string\n"
+echo -e "\nDone!-cli successfully moved to /usr/local/bin.\n\nType \`done!\` to see usage string\n"
 
 echo "Cleanup ..."
 

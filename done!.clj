@@ -8,21 +8,18 @@
 (import 'java.time.LocalDateTime
         'java.time.format.DateTimeFormatter)
 
-(def now (LocalDateTime/now))
-
 (def dt-formatter (DateTimeFormatter/ofPattern "yyyy-MM-dd"))
 
-(def cur (.format now dt-formatter))
+(def current-date (.format (LocalDateTime/now) dt-formatter))
 
 (def config-file-url (str (fs/home) "/" ".done.edn"))
 
 (defrecord Config [started done date])
 
+(def default-config (Config. nil [] current-date))
+
 (defn write-config [config]
   (spit config-file-url (into {} config)))
-
-(defn write-default-config []
-  (write-config (Config. nil [] cur)))
 
 (defn read-config []
   (map->Config (read-string (slurp config-file-url))))
@@ -51,15 +48,15 @@
 
 (when (not (fs/exists? config-file-url))
   ((fs/create-file config-file-url)
-   (write-config (Config. ))))
+   (write-config default-config)))
 
 
 (def file-conf (read-config))
 
 (let [conf-date (:date file-conf)]
-  (when (not (= conf-date cur))
+  (when (not (= conf-date current-date))
     (-> file-conf
-        (assoc :date cur)
+        (assoc :date current-date)
         (assoc :done [])
         write-config)))
 
@@ -73,7 +70,7 @@
             write-config)
         (println (str "You abadoned task " task-name))))))
 
-(defn get-today-done []
+(defn list-today-done []
   (let [conf (read-config)
         done-today (:done conf)]
     (if (empty? done-today)
@@ -85,17 +82,13 @@
                    "Usage:\n"
                    "\tdone! start TASK_NAME - start task\n"
                    "\tdone! finish - stops task\n"
-                   "\tdone! today - list tasks done today\n"
+                   "\tdone! list - list tasks done today\n"
                    "\tdone! abadon - abadon started task"))
 
-(defn prepare-args []
-  (let [[cmd options] *command-line-args*]
-    (vec (filter some? [cmd options]))))
-
-(let [args (prepare-args)]
+(let [args (vec (filter some? *command-line-args*))]
   (match args
          ["start" name] (start-task name)
          ["finish"] (finish-task)
-         ["today"] (get-today-done)
+         ["list"] (list-today-done)
          ["abadon"] (abadon-task)
          :else (println usage-string)))

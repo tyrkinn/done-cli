@@ -18,3 +18,11 @@ Just run installation command in your shell
 ```shell
   $ curl -sLO https://gitlab.com/tyrkinn/done-cli/-/raw/main/install.sh && sudo bash install.sh
 ```
+
+## Updating
+
+You can get last version of done! cli using update-done command installed with done-cli
+
+```shell
+  $ update-done
+```

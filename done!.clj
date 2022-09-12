@@ -49,11 +49,13 @@
 
 
 (when (not (fs/exists? config-file-url))
-  ((fs/create-file config-file-url)
-   (write-config default-config)))
+  (do (fs/create-file config-file-url)
+      (write-config default-config)))
 
 
-(def file-conf (read-config))
+(defn check-log-file [log-file-url]
+  (if (not (fs/exists? log-file-url))
+    (fs/create-file log-file-url)))
 
 (defn log-tasks-md [{:keys [done date]}]
   (check-log-file log-file-url)
@@ -63,13 +65,15 @@
         (str/join "\n" (map #(str "- " %) done)) "\n\n")
    :append true))
 
+(def file-conf (read-config))
+
 (let [conf-date (:date file-conf)]
   (when (not (= conf-date current-date))
-    ((log-tasks-md file-conf)
-     (-> file-conf
-         (assoc :date current-date)
-         (assoc :done [])
-         write-config))))
+    (do (log-tasks-md file-conf)
+        (-> file-conf
+            (assoc :date current-date)
+            (assoc :done [])
+            write-config))))
 
 (defn abadon-task []
   (let [conf (read-config)]
@@ -87,10 +91,6 @@
     (if (empty? done-today)
       (println "Nothing done today((")
       (println (str "Done: \n\t"(str/join "\n\t" done-today))))))
-
-(defn check-log-file [log-file-url]
-  (if (not (fs/exists? log-file-url))
-    (fs/create-file log-file-url)))
 
 (def usage-string (str
                    "You should pass valid args:\n"

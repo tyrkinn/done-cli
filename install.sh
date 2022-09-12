@@ -23,6 +23,10 @@ fi
 
 cp ./done\!.clj /usr/local/bin/done\!
 
+cp ./update-done.sh /usr/local/bin/update-done
+
+chmod +x /usr/local/bin/update-done
+
 cd ..
 
 rm -rf done-cli

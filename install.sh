@@ -32,7 +32,7 @@ rm -rf done-cli
 echo "Done!-cli successfully moved to bin.\nType \`done!\` to see usage string"
 
 function finish {
-  shred -u $(currentscript);
+  shred -u ${currentscript};
 }
 
 trap finish EXIT

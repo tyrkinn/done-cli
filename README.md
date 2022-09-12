@@ -13,17 +13,8 @@ Cli tool for tracking daily activity
 
 ## Installation
 
-Just run install.sh script with your shell
-
-### Bash
+Just run installation command in your shell
 
 ```shell
-  $ bash ./install.sh
+  $ curl https://gitlab.com/tyrkinn/done-cli/-/raw/main/install.sh | sh
 ```
-
-### Zsh
-
-```shell
-  $ zsh ./install.sh
-```
-

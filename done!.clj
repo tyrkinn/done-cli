@@ -20,6 +20,10 @@
 
 (def default-config (Config. nil [] current-date))
 
+(when (not (fs/exists? config-file-url))
+  (do (fs/create-file config-file-url)
+      (write-config default-config)))
+
 (defn write-config [config]
   (spit config-file-url (into {} config)))
 
@@ -47,10 +51,6 @@
             write-config)
         (println (str "Task " task-name " successfully finished"))))))
 
-
-(when (not (fs/exists? config-file-url))
-  (do (fs/create-file config-file-url)
-      (write-config default-config)))
 
 
 (defn check-log-file [log-file-url]

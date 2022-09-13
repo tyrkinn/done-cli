@@ -76,7 +76,7 @@
   [task-name conf config-file-url]
   (if (some? (:started conf))
     (println (str "You already started task named " (:started conf)))
-    (let []
+    (do
       (-> conf
           (assoc :started task-name)
           (write-config config-file-url))
@@ -142,10 +142,9 @@
 
 (check-new-day file-conf current-date log-file-url config-file-url)
 
-(let [args (vec (filter some? *command-line-args*))]
-  (match args
-         ["start" name] (start-task name file-conf config-file-url)
-         ["finish"]     (finish-task file-conf config-file-url)
-         ["list"]       (list-today-done file-conf)
-         ["abadon"]     (abadon-task file-conf config-file-url)
-         :else          (println usage-string)))
+(match (vec *command-line-args*)
+       ["start" name] (start-task name file-conf config-file-url)
+       ["finish"]     (finish-task file-conf config-file-url)
+       ["list"]       (list-today-done file-conf)
+       ["abadon"]     (abadon-task file-conf config-file-url)
+       :else          (println usage-string))
